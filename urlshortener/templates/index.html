@@ -1,0 +1,38 @@
+{% include 'base.html' %}
+{% block content %}
+<div class="container">
+	<br><br>
+	{% include 'snippets/nav.html' %}
+	<br>
+
+ <div class="card">
+ 	<form class="col-sm-9 "method="post" action="{% url 'shortenersite:shortenurl' %}">
+		 <input style="padding:20px ;margin:10px" type="text" name="url" id="url" class="form-control input-sm" placeholder="type a url" />
+		 
+		  {% csrf_token %}
+		 <button type="submit" id="submitButton" class="btn btn-primary">Submit</button></p> 
+	 </form>
+
+
+ 
+<span id="url-result">Enter the URL above and click submit!</span>
+{% if notvalid %}
+</div>
+<div><p>NOT A VALID URL</p></div>
+
+
+
+{% endif %}
+
+{% if short_id %}
+  <div class="panel panel-success">
+      <div class="panel-heading">Short Url Generated !!</div>
+      <div class="panel-body"><a href="{{ short_id }}">{{ short_id }}</a></div>
+    </div>
+
+
+
+{% endif %}
+</div>
+
+{% endblock %}
